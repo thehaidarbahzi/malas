@@ -1,9 +1,19 @@
 package org.example.Entity.Enemy;
 
-public class SpecialEnemy extends Enemy {
-    public SpecialEnemy(String name, double health, double armor) {
-        this.nama = name;
-        this.health = health;
-        this.armor = armor;
+import java.util.List;
+
+public abstract class SpecialEnemy extends Enemy implements SkillCaster {
+    public SpecialEnemy(String name, double health, double armor, double attack) {
+        super(name, health, armor, attack);
     }
+
+    public abstract boolean shouldUseSkill(List<Enemy> allyTeam);
+
+    public abstract void executeSkill(List<Enemy> allyTeam);
+
+    public abstract void decrementSkillCooldown();
+
+    public abstract int getSkillCooldown();
+
+    public abstract String getSkillName();
 }

@@ -1,5 +1,7 @@
 package org.example.GameManager.Range;
 
+import java.util.Random;
+
 public class Reward {
     private final int minXp;
     private final int maxXp;
@@ -27,5 +29,21 @@ public class Reward {
 
     public int getMaxMoney() {
         return maxMoney;
+    }
+
+    public int rollXp(Random random) {
+        return rollInRange(random, minXp, maxXp);
+    }
+
+    public int rollMoney(Random random) {
+        return rollInRange(random, minMoney, maxMoney);
+    }
+
+    private int rollInRange(Random random, int min, int max) {
+        if (max <= min) {
+            return min;
+        }
+
+        return random.nextInt(max - min + 1) + min;
     }
 }
