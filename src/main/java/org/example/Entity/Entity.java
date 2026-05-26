@@ -55,7 +55,16 @@ public abstract class Entity {
     }
 
     public void takeDamage(double damage) {
+        takeDamage(damage, false);
+    }
+
+    public void takeDamage(double damage, boolean trueDamage) {
         if (damage <= 0) {
+            return;
+        }
+
+        if (trueDamage) {
+            takeTrueDamage(damage);
             return;
         }
 
@@ -97,7 +106,7 @@ public abstract class Entity {
     public void applyEffect(SkillEffect effect) {
         switch (effect.getType()) {
             case DAMAGE:
-                takeTrueDamage(effect.getValue());
+                takeDamage(effect.getValue(), true);
                 break;
             case HEAL:
                 heal(effect.getValue());
