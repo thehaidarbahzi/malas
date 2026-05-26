@@ -64,7 +64,8 @@ public abstract class Entity {
         }
 
         if (trueDamage) {
-            takeTrueDamage(damage);
+            this.health = Math.max(0, this.health - damage);
+            normalizeHealth();
             return;
         }
 
